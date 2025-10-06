@@ -4,6 +4,9 @@
  */
 
 /* Global Variables */
+var trainer = false;
+var count = 0;
+
 
 
 /** 
@@ -14,7 +17,13 @@
  */
 /* Main */
 function main(){
-
+again = true;
+if (again == true){
+    trainer = confirm("Would you like to play aginst the trainer?")
+    playNim();
+    again = confirm("Would you like to play again?")
+}
+else alert("See you next time!")
 }
 
 /** 
@@ -24,7 +33,22 @@ function main(){
  * @return none
  */
 function playNim(){
-
+count = 0;
+    if (count < 21){
+        userTurn();
+    }
+    if(count > 20){
+        alert("You lose");
+    }
+    else{
+        cpuTurn();
+    }
+    if(count > 20){
+        alert("You win");
+    }
+    else{
+        playNim();
+    }
 }
 
 /** 
@@ -34,7 +58,16 @@ function playNim(){
  * @return none
  */
 function userTurn(){
+let turn = prompt("Input a number 1-3");
+parseInt(turn);
+if (turn < 1 || turn > 3){
+    alert("Invalid input!")
+    userTurn();
+}
 
+else count += turn;
+
+alert("Count is now " + count + ".")
 }
 
 /** 
@@ -44,5 +77,12 @@ function userTurn(){
  * @return none
  */
 function cpuTurn(){
-
+turn = 0;
+    if (count = 17) turn = 3;
+    else if (count = 18) turn = 2;
+    else if (count > 18) turn = 1;
+    else if (trainer = true) turn = 4 - count % 4
+    else turn = Math.floor(Math.random() * 3 + 1);
+count += turn; 
+alert("I counted " + turn + ", count is now " + turn + ".");
 }
