@@ -32,57 +32,55 @@ else alert("See you next time!")
  * @param none 
  * @return none
  */
-function playNim(){
-count = 0;
-    if (count < 21){
+function playNim() {
+    count = 0;
+    while (count < 21) {
         userTurn();
-    }
-    if(count > 20){
-        alert("You lose");
-    }
-    else{
+        if (count >= 21) {
+            alert("You lose!");
+            break;
+        }
+
         cpuTurn();
-    }
-    if(count > 20){
-        alert("You win");
-    }
-    else{
-        playNim();
+        if (count >= 21) {
+            alert("You win!");
+            break;
+        }
     }
 }
 
-/** 
- * userTurn  
- * User enters a turn. Validation against cheating handled by recursion.
- * @param none 
+function userTurn() {
+    let turn;
+    while (true) {
+        turn = prompt("Input a number 1-3");
+        turn = parseInt(turn);
+
+        if (turn >= 1 && turn <= 3) {
+            break; // Exit the loop if input is valid
+        }
+        alert("Invalid input! Please enter a number between 1 and 3.");
+    }
+    count += turn;
+    alert("You counted " + turn + ". Count is now " + count + ".");
+}
+
+/**
+ * cpuTurn
+ * @param none
  * @return none
  */
-function userTurn(){
-let turn = prompt("Input a number 1-3");
-parseInt(turn);
-if (turn < 1 || turn > 3){
-    alert("Invalid input!")
-    userTurn();
-}
+function cpuTurn() {
+    let turn = 0;
+    if (count >= 18) {
+            turn = 21 - count;
+    }
+    if (trainer === true) {
+        turn = 4 - (count % 4);
+        }
+    else {
+        turn = Math.floor(Math.random() * 3) + 1;
+    }
 
-else count += turn;
-
-alert("Count is now " + count + ".")
-}
-
-/** 
- * cpuTurn 
- * Generate computer's turn without losing on purpose.  Different turns if trainer or simple.  
- * @param none 
- * @return none
- */
-function cpuTurn(){
-turn = 0;
-    if (count = 17) turn = 3;
-    else if (count = 18) turn = 2;
-    else if (count > 18) turn = 1;
-    else if (trainer = true) turn = 4 - count % 4
-    else turn = Math.floor(Math.random() * 3 + 1);
-count += turn; 
-alert("I counted " + turn + ", count is now " + turn + ".");
+    count += turn;
+    alert("I counted " + turn + ". Count is now " + count + ".");
 }
