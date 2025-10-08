@@ -18,12 +18,12 @@ var count = 0;
 /* Main */
 function main(){
 again = true;
-if (again == true){
+while (again == true){
     trainer = confirm("Would you like to play aginst the trainer?")
     playNim();
     again = confirm("Would you like to play again?")
 }
-else alert("See you next time!")
+alert("See you next time!");
 }
 
 /** 
@@ -50,18 +50,21 @@ function playNim() {
 }
 
 function userTurn() {
-    let turn;
-    while (true) {
-        turn = prompt("Input a number 1-3");
-        turn = parseInt(turn);
-
-        if (turn >= 1 && turn <= 3) {
-            break; // Exit the loop if input is valid
-        }
-        alert("Invalid input! Please enter a number between 1 and 3.");
+    let turn = prompt("Input a number 1-3 or type q to quit");
+    if(turn == "q"){
+        count = 22
     }
-    count += turn;
-    alert("You counted " + turn + ". Count is now " + count + ".");
+    else{
+        turn = parseInt(turn);
+        if (turn < 1 || turn > 3) {
+            alert("Invalid input! Please enter a number between 1 and 3.");
+            userTurn();
+        }
+        else {
+            count += turn;
+            alert("You counted " + turn + ". Count is now " + count + ".");
+        }
+    }
 }
 
 /**
