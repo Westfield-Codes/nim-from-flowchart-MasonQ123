@@ -34,14 +34,10 @@ function playNim(){
     count = 0;
     while (count < 21){
         userTurn ();
-            if (count >= 21){
-            alert("You lose!");
-            break;
-        }
-        cpuTurn();
-        if (count >= 21){
-            alert("You win!");
-            break;
+            if (count >= 21) alert("You lose!");
+        else{
+            cpuTurn();
+            if (count >= 21) alert("You win!");
         }
     }
 }
